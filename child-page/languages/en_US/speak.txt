@@ -1,0 +1,2 @@
+plugin_child_page_title_parent: Parent
+plugin_child_page_description_child_of: <strong>Parent:</strong> <a href="%s" target="_blank">%s</a> &rarr; <a href="%s" target="_blank">URL</a>
