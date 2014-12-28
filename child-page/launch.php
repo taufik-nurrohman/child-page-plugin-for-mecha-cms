@@ -55,7 +55,7 @@ Route::accept('(:any)/(:any)', function($parent = "", $child = "") use($config) 
  * Notice
  * ------
  *
- * Add notice in your page manager if this page is a child page.
+ * Add a notice to the static page manager to indicate that the current page is a child page.
  *
  */
 
@@ -69,8 +69,8 @@ Weapon::add('page_footer', function($page) {
 
 
 /**
- * Prevent Direct Page Access
- * --------------------------
+ * Prevent Direct Access of Child Page
+ * -----------------------------------
  *
  * Disallow child pages to be accessed directly as a normal page.
  *

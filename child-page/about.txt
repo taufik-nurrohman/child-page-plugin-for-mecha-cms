@@ -1,10 +1,10 @@
 Title: Child Page
 Author: Taufik Nurrohman
 URL: http://latitudu.com
-Version: 1.0.0
+Version: 1.0.1
 
 ====
 
 > Add child page to static pages.
 
-Specify the parent page slug in the custom field to link it (the child page) to the desired page. One level only.
+Determine the parent page slug on the custom field provided to link it (the child page) to the desired parent page. Applies only to one level of child page.

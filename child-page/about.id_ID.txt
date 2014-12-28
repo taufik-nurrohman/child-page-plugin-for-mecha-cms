@@ -1,10 +1,10 @@
 Title: Anak Halaman
 Author: Taufik Nurrohman
 URL: http://latitudu.com
-Version: 1.0.0
+Version: 1.0.1
 
 ====
 
 > Menambahkan anak halaman ke halaman-halaman statis.
 
-Tentukan _slug_ halaman induk pada bidang kustom untuk mengaitkan anak halaman tersebut kepada halaman induk yang diinginkan. Hanya berlaku untuk satu level saja.
+Tentukan _slug_ halaman induk pada bidang kustom yang disediakan untuk mengaitkan anak halaman tersebut kepada halaman induk yang diinginkan. Berlaku untuk satu level anak halaman saja.
