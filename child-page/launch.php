@@ -1,5 +1,14 @@
 <?php
 
+// Find static page's route stack value
+$route_stack = false;
+foreach(Route::$routes as $route) {
+    if($route['pattern'] === '(:any)') {
+        $route_stack = $route['stack'];
+        break;
+    }
+}
+
 // The child page route
 Route::accept('(:any)/(:any)', function($parent = "", $child = "") use($config) {
     // Check if parent page does not exist
@@ -39,24 +48,7 @@ Route::accept('(:any)/(:any)', function($parent = "", $child = "") use($config) 
     ));
     // Attach the shield
     Shield::attach('page-' . $child);
-}, 111);
-
-// Re-define the page URL in backend view of static page list
-if($config->url_path === $config->manager->slug . '/page' || strpos($config->url_path, $config->manager->slug . '/page/') === 0) {
-    Filter::add('shield:lot', function($data) {
-        if(isset($data['config']->pages) && $data['config']->pages !== false) {
-            foreach($data['config']->pages as &$page) {
-                if(isset($page->fields->parent_page_slug) && trim($page->fields->parent_page_slug) !== "") {
-                    $uri = explode('/', $page->url);
-                    $uri_end = array_pop($uri);
-                    $page->url = implode('/', $uri) . '/' . $page->fields->parent_page_slug . '/' . $uri_end;
-                }
-            }
-            unset($page);
-        }
-        return $data;
-    });
-}
+}, $route_stack ? $route_stack + 1 : 101);
 
 // Disallow child pages to be accessed directly as a normal page
 Route::over('(:any)', function($slug = "") {
