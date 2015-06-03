@@ -16,10 +16,3 @@ if($config->url_path === $config->manager->slug . '/page' || strpos($config->url
         return $data;
     });
 }
-
-// Cleaning up ...
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if(isset($_POST['fields']['parent_page_slug']['value']) && trim($_POST['fields']['parent_page_slug']['value']) === "") {
-        unset($_POST['fields']['parent_page_slug']);
-    }
-}
