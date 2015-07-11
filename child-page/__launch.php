@@ -1,14 +1,15 @@
 <?php
 
-// Re-define page URL in the backend view of static page list
-if($config->url_path === $config->manager->slug . '/page' || strpos($config->url_path, $config->manager->slug . '/page/') === 0) {
-    Filter::add('shield:lot', function($data) {
+// Re-define page URL and page title in the backend view of static page list
+if(Route::is($config->manager->slug . '/page') || Route::is($config->manager->slug . '/page/(:num)')) {
+    Filter::add('shield:lot', function($data) use($config) {
         if(isset($data['config']->pages) && $data['config']->pages !== false) {
             foreach($data['config']->pages as &$page) {
                 if(isset($page->fields->parent_page_slug) && trim($page->fields->parent_page_slug) !== "") {
-                    $uri = explode('/', $page->url);
-                    $uri_end = array_pop($uri);
-                    $page->url = implode('/', $uri) . '/' . $page->fields->parent_page_slug . '/' . $uri_end;
+                    $page->url = File::D($page->url) . '/' . $page->fields->parent_page_slug . '/' . File::B($page->url);
+					if($parent = Get::pageAnchor($page->fields->parent_page_slug)) {
+						$page->title = $parent->title . $config->title_separator . $page->title;
+					}
                 }
             }
             unset($page);

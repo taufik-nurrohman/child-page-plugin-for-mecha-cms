@@ -12,7 +12,7 @@ foreach(Route::$routes as $route) {
 // The child page route
 Route::accept('(:any)/(:any)', function($parent = "", $child = "") use($config) {
     // Check if parent page does not exist
-    if( ! $page_parent = Get::pageHeader($parent)) {
+    if( ! $page_parent = Get::pageAnchor($parent)) {
         Shield::abort('404-page');
     }
     // Check if child page does not exist
@@ -42,8 +42,8 @@ Route::accept('(:any)/(:any)', function($parent = "", $child = "") use($config) 
     });
     // Set the child page data
     Config::set(array(
-        'page_type' => 'page',
         'page_title' => $page_child->title . $config->title_separator . $page_parent->title . $config->title_separator . $config->title,
+        'page_type' => 'page',
         'page' => $page_child
     ));
     // Attach the shield
@@ -52,7 +52,7 @@ Route::accept('(:any)/(:any)', function($parent = "", $child = "") use($config) 
 
 // Disallow child pages to be accessed directly as a normal page
 Route::over('(:any)', function($slug = "") {
-    $page = Get::page($slug);
+    $page = Get::pageHeader($slug);
     if(isset($page->fields->parent_page_slug) && trim($page->fields->parent_page_slug) !== "") {
         Shield::abort('404-page');
     }

@@ -1,1 +1,2 @@
 plugin_child_page_title_parent: Induk
+plugin_child_page_description_parent: Tentukan halaman induk untuk halaman ini.

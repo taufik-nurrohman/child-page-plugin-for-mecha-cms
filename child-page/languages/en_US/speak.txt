@@ -1,1 +1,2 @@
 plugin_child_page_title_parent: Parent
+plugin_child_page_description_parent: Specify the parent page for this page.
