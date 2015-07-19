@@ -48,7 +48,7 @@ Route::accept('(:any)/(:any)', function($parent = "", $child = "") use($config) 
     ));
     // Attach the shield
     Shield::attach('page-' . $child);
-}, $route_stack ? $route_stack + 1 : 101);
+}, $route_stack ? $route_stack - 1 : 99);
 
 // Disallow child pages to be accessed directly as a normal page
 Route::over('(:any)', function($slug = "") {
