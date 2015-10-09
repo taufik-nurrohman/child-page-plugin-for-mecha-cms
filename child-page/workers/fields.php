@@ -1,7 +1,7 @@
 <?php
 
-$o = array("" => '&mdash; ' . $speak->none . ' &mdash;');
-$o_max = 500;
+$o = array();
+$o_max = 200;
 $o_count = 0;
 
 if($pages = Get::pages()) {
@@ -12,11 +12,13 @@ if($pages = Get::pages()) {
     }
 }
 
+asort($o);
+
 return array(
     'parent_page_slug' => array(
         'title' => $speak->plugin_child_page_title_parent,
-        'type' => $o_count <= $o_max ? 'o' : 't',
-        'value' => $o_count <= $o_max ? $o : "",
+        'type' => $o_count <= $o_max ? 'option' : 'text',
+        'value' => $o_count <= $o_max ? array("" => '&mdash; ' . $speak->none . ' &mdash;') + $o : "",
         'description' => $speak->plugin_child_page_description_parent,
         'scope' => 'page'
     )
