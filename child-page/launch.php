@@ -20,7 +20,7 @@ Route::accept('(:any)/(:any)', function($parent = "", $child = "") use($config) 
         }
     }
     // Check if parent page or child page is a draft
-    if($page_parent->state == 'draft' || $page_child->state == 'draft') {
+    if($page_parent->state == 'drafted' || $page_child->state == 'drafted') {
         Shield::abort('404-page');
     }
     // Set the child page data
