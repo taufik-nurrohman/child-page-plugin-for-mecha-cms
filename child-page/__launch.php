@@ -19,10 +19,10 @@ if(Route::is($config->manager->slug . '/page') || Route::is($config->manager->sl
 }
 
 // Re-define page URL on the notification message that appears on update success
-if($parent = Request::post('fields.parent_page_slug')) {
+if($parent = Request::post('fields.parent_page_slug.value')) {
     Filter::add('page:url', function($url) use($parent) {
         $s = explode('/', $url);
         $ss = array_pop($s);
-        return implode('/', $s) . '/' . $parent['value'] . '/' . $ss;
+        return implode('/', $s) . '/' . $parent . '/' . $ss;
     });
 }
